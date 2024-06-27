@@ -1,4 +1,4 @@
-# action-dokku-deploy@cloudflared
+# action-dokku-cloudflared
 Easily deploy an app to your Dokku Instance from GitHub **through Cloudflare Tunnel** :sparkles:.
 
 :sparkles: **Now support deployments over Cloudflare Tunnels using Cloudflared**
