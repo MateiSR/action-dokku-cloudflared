@@ -1,5 +1,7 @@
-# action-dokku-deploy
-Easily deploy an app to your Dokku Instance from GitHub
+# action-dokku-deploy@cloudflared
+Easily deploy an app to your Dokku Instance from GitHub **through Cloudflare Tunnel** :sparkles:.
+
+For a version without Cloudflare Tunnel support, see the `main` branch.
 
 :sparkles: **Now support deployments over Cloudflare Tunnels using Cloudflared**
 
@@ -8,6 +10,12 @@ See [`obrassard/action@cloudflared`](https://github.com/obrassard/action-dokku-p
 ### Requirements
 
 Please note that this action is compatible with `dokku >= 0.11.6`.
+
+### Prerequisites
+
+You must create a new Service Token in Cloudflare Zero Trust Dashboard and add the clientID/clientSecret to your GitHub Secrets.
+See https://developers.cloudflare.com/cloudflare-one/tutorials/ssh-service-token to learn how to create a Service Token.
+
 
 ## Inputs
 
@@ -46,6 +54,23 @@ Optional. The branch to be deployed when pushing to Dokku (default to `master`).
 
 Example : `develop`
 
+***
+
+#### `cloudflared_client_id`
+
+**Required**. The clientID of the Service Token created in Cloudflare Zero Trust Dashboard.
+
+Example : `a61c032ee4510f8b7e2749ea0896cc14.access`
+
+***
+
+#### `cloudflared_client_secret`
+
+**Required**. The clientID of the Service Token created in Cloudflare Zero Trust Dashboard.
+
+Example : `85dcb2301975e8b8e40deb6097645995aa4bed35c2badf098028652097c69eeb`
+
+
 ## Example usage 
 
 This action is particularly useful when triggered by new pushes :
@@ -56,7 +81,7 @@ name: 'Deploy to my Dokku instance'
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
@@ -74,10 +99,12 @@ jobs:
         fetch-depth: 0 # This is required or you might get an error from Dokku
 
     - name: Push to dokku
-      uses: obrassard/action-dokku-deploy@v1.0.2
+      uses: obrassard/action-dokku-deploy@cloudflared # This version tag is required for Cloudflare Tunnel support
       with:
         dokku_repo: 'ssh://dokku@dokku.myhost.ca:22/appname'
         ssh_key: ${{ secrets.SSH_KEY }}
-        deploy_branch: 'develop'
+        deploy_branch: 'master'
+        cloudflared_client_id: ${{ secrets.CLOUDFLARED_CLIENT_ID }}
+        cloudflared_client_secret: ${{ secrets.CLOUDFLARED_CLIENT_SECRET }}
 ```
 
