@@ -5,10 +5,9 @@ script_dir=$(dirname $0)
 . "$script_dir/cloudflared.sh"
 . "$script_dir/setup-ssh.sh"
 
-echo ""
-echo "Pushing to Dokku Host";
+echo "\nPushing to Dokku Host";
 
-git push $DOKKU_REPO $GITHUB_SHA:refs/heads/$DEPLOY_BRANCH --force
+git push $ssh_host:$app $GITHUB_SHA:refs/heads/$DEPLOY_BRANCH --force 
 
 [ $? -eq 0 ]  || exit 1
 
