@@ -10,7 +10,10 @@ echo "Parsed app name: $app"
 
 echo "Pushing to Dokku Host: $ssh_host"
 command="git push $ssh_user@$ssh_host:$app refs/heads/$DEPLOY_BRANCH --force"
+
+echo "---------------------------------------------"
 echo "git command: $command"
+echo "---------------------------------------------"
 
 eval $command
 
