@@ -8,4 +8,4 @@ echo ""
 echo "Unlocking Dokku deployment";
 
 app=$(echo $DOKKU_REPO | sed -e 's/.*\///')
-ssh -p ${ssh_port:=22} $ssh_host apps:unlock $app
+ssh -p ${ssh_port:=22} $ssh_user@$ssh_host apps:unlock $app

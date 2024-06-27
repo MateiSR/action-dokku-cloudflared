@@ -20,7 +20,6 @@ ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h --id $CLOUDFLAR
 IdentityFile /root/.ssh/id_rsa
 StrictHostKeyChecking no
 Port $ssh_port
-User $ssh_user
 EOF
 
 echo "Created /root/.ssh/config"
