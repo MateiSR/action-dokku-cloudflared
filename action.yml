@@ -1,6 +1,6 @@
 # action.yml
-name: 'Push to Dokku'
-description: 'Easily deploy an app to your Dokku Instance'
+name: 'Cloudflare Tunnels to Dokku'
+description: 'Easily deploy an app to your Dokku Instance through Cloudflare Tunnels'
 author: 'Matei Radu (original by Olivier Brassard)'
 branding:
   icon: 'send'  
