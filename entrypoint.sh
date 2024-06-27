@@ -8,7 +8,7 @@ script_dir=$(dirname $0)
 echo ""
 echo "Pushing to Dokku Host";
 
-git push $ssh_user@$ssh_host:$app $GITHUB_SHA:refs/heads/$DEPLOY_BRANCH --force 
+git push $ssh_user@$ssh_host:$app refs/heads/$DEPLOY_BRANCH --force 
 
 [ $? -eq 0 ]  || exit 1
 
