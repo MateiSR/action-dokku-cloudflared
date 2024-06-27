@@ -11,7 +11,7 @@ fi
 echo "Creating SSH config for Cloudflare Tunnel"
 ssh_host=$(echo $DOKKU_REPO | sed -e 's/.*@//' -e 's/[:/].*//')
 ssh_port=$(echo $DOKKU_REPO | sed -e 's/.*@//' -e 's/\/.*//' -ne 's/.*:\([0-9]*\)/\1/p')
-ssh_user=$(echo $DOKKU_REPO | sed -e 's|ssh://\([^@]*\)@.*|\1|p')
+ssh_user=$(echo $DOKKU_REPO | sed -e 's/.*\/\/\([^@]*\)@.*/\1/')
 echo "Extracted ssh_host: $ssh_host, ssh_port: $ssh_port, ssh_user: $ssh_user"
 
 cat << EOF > /root/.ssh/config
